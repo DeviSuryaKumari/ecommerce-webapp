@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS products(
  description VARCHAR (40) NOT NULL,
  price FLOAT NOT NULL,
  quantity_available INT NOT NULL,
- seller_id INT NOT NULL,
+ seller_id INT,
  FOREIGN KEY (seller_id) REFERENCES users(user_id) ON DELETE CASCADE,
  PRIMARY KEY (product_id)
 );

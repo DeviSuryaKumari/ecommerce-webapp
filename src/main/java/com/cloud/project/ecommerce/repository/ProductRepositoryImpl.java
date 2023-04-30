@@ -1,7 +1,5 @@
 package com.cloud.project.ecommerce.repository;
 
-import com.cloud.project.ecommerce.CONSTANTS;
-import com.cloud.project.ecommerce.model.Order;
 import com.cloud.project.ecommerce.model.Product;
 import com.cloud.project.ecommerce.query.ProductQuery;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,10 +18,10 @@ public class ProductRepositoryImpl implements  ProductRepository {
     }
 
     @Override
-    public List<Product> fetchProductsByCategory(int categoryId) {
-        String sqlQuery = ProductQuery.FETCH_PRODUCTS_BY_CATEGORY;
+    public List<Product> fetchAllProducts() {
+        String sqlQuery = ProductQuery.FETCH_ALL_PRODUCTS;
 
-        return jdbcTemplate.query(sqlQuery, this::mapRowToProduct, categoryId);
+        return jdbcTemplate.query(sqlQuery, this::mapRowToProduct);
     }
 
     @Override
@@ -34,10 +32,10 @@ public class ProductRepositoryImpl implements  ProductRepository {
     }
 
     @Override
-    public List<Product> fetchAllProducts() {
-        String sqlQuery = ProductQuery.FETCH_ALL_PRODUCTS;
+    public List<Product> fetchProductsByCategory(int categoryId) {
+        String sqlQuery = ProductQuery.FETCH_PRODUCTS_BY_CATEGORY;
 
-        return jdbcTemplate.query(sqlQuery, this::mapRowToProduct);
+        return jdbcTemplate.query(sqlQuery, this::mapRowToProduct, categoryId);
     }
 
     @Override
@@ -60,18 +58,18 @@ public class ProductRepositoryImpl implements  ProductRepository {
     }
 
     @Override
-    public List<Product> fetchMyProducts(int sellerId) {
-        String sqlQuery = ProductQuery.FETCH_MY_PRODUCTS;
+    public List<Product> fetchSellerProducts(int sellerId) {
+        String sqlQuery = ProductQuery.FETCH_SELLER_PRODUCTS;
 
         return jdbcTemplate.query(sqlQuery, this::mapRowToProduct, sellerId);
     }
 
-    @Override
-    public List<Order> fetchMyOrders(int sellerId) {
-        String sqlQuery = ProductQuery.FETCH_MY_ORDERS;
-
-        return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, sellerId);
-    }
+//    @Override
+//    public List<Order> fetchSellerOrders(int sellerId) {
+//        String sqlQuery = ProductQuery.FETCH_SELLER_ORDERS;
+//
+//        return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, sellerId);
+//    }
 
     private Product mapRowToProduct(ResultSet resultSet, int rowNum) throws SQLException {
 
@@ -87,16 +85,16 @@ public class ProductRepositoryImpl implements  ProductRepository {
         return product;
     }
 
-    private Order mapRowToOrder(ResultSet resultSet, int rowNum) throws SQLException {
-
-        Order order = new Order();
-
-        order.setOrderId(resultSet.getLong("order_id"));
-        order.setUserId(resultSet.getLong("user_id"));
-        order.setOrderDate(resultSet.getDate("order_date").toString());
-        order.setOrderStatus(CONSTANTS.ORDER_STATUS.valueOf(resultSet.getString("order_status")));
-        order.setTotalPrice(resultSet.getDouble("total_price"));
-
-        return order;
-    }
+//    private Order mapRowToOrder(ResultSet resultSet, int rowNum) throws SQLException {
+//
+//        Order order = new Order();
+//
+//        order.setOrderId(resultSet.getLong("order_id"));
+//        order.setUserId(resultSet.getLong("user_id"));
+//        order.setOrderDate(resultSet.getDate("order_date").toString());
+//        order.setOrderStatus(CONSTANTS.ORDER_STATUS.valueOf(resultSet.getString("order_status")));
+//        order.setTotalPrice(resultSet.getDouble("total_price"));
+//
+//        return order;
+//    }
 }
