@@ -1,4 +1,4 @@
---USE 'e-commerce-database';
+--USE e-commerce-database;
 
 CREATE TABLE IF NOT EXISTS users(
  user_id INT AUTO_INCREMENT,
@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS products(
  price FLOAT NOT NULL,
  quantity_available INT NOT NULL,
  seller_id INT NOT NULL,
+ FOREIGN KEY (seller_id) REFERENCES users(user_id) ON DELETE CASCADE,
  PRIMARY KEY (product_id)
 );
 
