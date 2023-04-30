@@ -16,7 +16,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int register(User user) {
 
-        String sqlQuery = UserQuery.SAVE;
+        String sqlQuery = UserQuery.REGISTER;
 
         return jdbcTemplate.update(sqlQuery,
                 null,
@@ -29,9 +29,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public int signIn(Long userId) {
+    public int login(Long userId) {
 
-        String sqlQuery = UserQuery.UPDATE;
+        String sqlQuery = UserQuery.LOGIN;
 
         return jdbcTemplate.update(sqlQuery, userId);
     }
