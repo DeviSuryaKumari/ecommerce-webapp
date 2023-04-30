@@ -19,12 +19,11 @@ public class UserRepositoryImpl implements UserRepository {
         String sqlQuery = UserQuery.REGISTER;
 
         return jdbcTemplate.update(sqlQuery,
-                null,
                 user.getName(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
-                user.getRole(),
+                user.getRole().name(),
                 user.getIsLoggedIn());
     }
 
