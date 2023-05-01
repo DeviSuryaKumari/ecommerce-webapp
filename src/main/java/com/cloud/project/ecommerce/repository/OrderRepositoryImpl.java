@@ -66,12 +66,12 @@ public class OrderRepositoryImpl implements OrderRepository {
         return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, customerId);
     }
 
-    @Override
-    public List<Order> fetchSellerOrders(int sellerId) {
-        String sqlQuery = OrderQuery.FETCH_SELLER_ORDERS;
-
-        return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, sellerId);
-    }
+//    @Override
+//    public List<Order> fetchSellerOrders(int sellerId) {
+//        String sqlQuery = OrderQuery.FETCH_SELLER_ORDERS;
+//
+//        return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, sellerId);
+//    }
 
     private Order mapRowToOrder(ResultSet resultSet, int rowNum) throws SQLException {
 
@@ -84,9 +84,5 @@ public class OrderRepositoryImpl implements OrderRepository {
         order.setTotalPrice(resultSet.getDouble("total_price"));
 
         return order;
-    }
-
-    private int mapRowToInt(ResultSet resultSet, int rowNum) throws SQLException {
-        return resultSet.getInt(1);
     }
 }
