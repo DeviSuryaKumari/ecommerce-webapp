@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS products(
  description VARCHAR (40) NOT NULL,
  price FLOAT NOT NULL,
  quantity_available INT NOT NULL,
- seller_id INT,
+ seller_id INT NOT NULL,
  FOREIGN KEY (seller_id) REFERENCES users(user_id) ON DELETE CASCADE,
  PRIMARY KEY (product_id)
 );
@@ -30,17 +30,18 @@ CREATE TABLE IF NOT EXISTS categories(
 
 -- m2m in table name indicates many-to-many relationship between entities
 CREATE TABLE IF NOT EXISTS product_category_m2m(
- product_id INT,
+ product_id INT NOT NULL,
  FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE,
- category_id INT,
+ category_id INT NOT NULL,
  FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE,
  PRIMARY KEY (product_id, category_id)
 );
 
 CREATE TABLE IF NOT EXISTS orders(
  order_id INT AUTO_INCREMENT,
- user_id INT,
+ user_id INT NOT NULL,
  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+-- YYYY-MM-DD hh:mm:ss
  order_date DATETIME NOT NULL,
  order_status ENUM('PLACED', 'PROCESSING', 'DELIVERED') NOT NULL,
  total_price DOUBLE NOT NULL,
@@ -49,9 +50,9 @@ CREATE TABLE IF NOT EXISTS orders(
 
 -- m2m in table name indicates many-to-many relationship between entities
 CREATE TABLE IF NOT EXISTS order_product_m2m(
- order_id INT,
+ order_id INT NOT NULL,
  FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
- product_id INT,
+ product_id INT NOT NULL,
  FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE,
  PRIMARY KEY (order_id, product_id),
  quantity INT NOT NULL

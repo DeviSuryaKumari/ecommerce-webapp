@@ -64,13 +64,6 @@ public class ProductRepositoryImpl implements  ProductRepository {
         return jdbcTemplate.query(sqlQuery, this::mapRowToProduct, sellerId);
     }
 
-//    @Override
-//    public List<Order> fetchSellerOrders(int sellerId) {
-//        String sqlQuery = ProductQuery.FETCH_SELLER_ORDERS;
-//
-//        return jdbcTemplate.query(sqlQuery, this::mapRowToOrder, sellerId);
-//    }
-
     private Product mapRowToProduct(ResultSet resultSet, int rowNum) throws SQLException {
 
         Product product = new Product();
@@ -84,17 +77,4 @@ public class ProductRepositoryImpl implements  ProductRepository {
 
         return product;
     }
-
-//    private Order mapRowToOrder(ResultSet resultSet, int rowNum) throws SQLException {
-//
-//        Order order = new Order();
-//
-//        order.setOrderId(resultSet.getLong("order_id"));
-//        order.setUserId(resultSet.getLong("user_id"));
-//        order.setOrderDate(resultSet.getDate("order_date").toString());
-//        order.setOrderStatus(CONSTANTS.ORDER_STATUS.valueOf(resultSet.getString("order_status")));
-//        order.setTotalPrice(resultSet.getDouble("total_price"));
-//
-//        return order;
-//    }
 }

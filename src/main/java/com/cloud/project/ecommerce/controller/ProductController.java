@@ -67,14 +67,4 @@ public class ProductController {
             return ResponseEntity.internalServerError().build();
         }
     }
-
-//    @GetMapping("/seller/{id}")
-//    public ResponseEntity<List<Product>> fetchSellerOrders(@PathVariable int sellerId) {
-//        try {
-//            List<Order> orders = orderRepository.fetchSellerOrders(sellerId);
-//            return ResponseEntity.ok(orders);
-//        } catch (Exception e) {
-//            return ResponseEntity.internalServerError().build();
-//        }
-//    }
 }

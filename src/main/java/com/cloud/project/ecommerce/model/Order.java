@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter @Setter
 public class Order {
 
-    private Long orderId;
-    private Long userId;
+    private Integer orderId;
+    private Integer userId;
     private String orderDate;
     private CONSTANTS.ORDER_STATUS orderStatus;
     private double totalPrice;

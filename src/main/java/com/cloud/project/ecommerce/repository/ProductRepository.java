@@ -14,5 +14,4 @@ public interface ProductRepository {
     int addProduct(Product product);
     int deleteProduct(int productId);
     List<Product> fetchSellerProducts(int sellerId);
-//    public List<Order> fetchSellerOrders(int sellerId);
 }

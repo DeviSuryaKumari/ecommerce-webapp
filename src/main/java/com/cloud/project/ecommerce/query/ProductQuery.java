@@ -17,9 +17,4 @@ public class ProductQuery {
     public static final String DELETE_PRODUCT = "DELETE FROM products WHERE product_id = ?";
 
     public static final String FETCH_SELLER_PRODUCTS = "SELECT * FROM products WHERE seller_id = ?";
-
-//    public static final String FETCH_SELLER_ORDERS = "SELECT * FROM orders " +
-//            "INNER JOIN (SELECT order_id " +
-//            "FROM products INNER JOIN order_product_m2m USING(product_id) " +
-//            "WHERE seller_id = ?) AS order_ids USING(order_id)";
 }
