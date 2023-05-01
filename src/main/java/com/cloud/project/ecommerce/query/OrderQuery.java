@@ -7,9 +7,6 @@ public class OrderQuery {
     public static final String FETCH_CUSTOMER_ORDERS =
             "SELECT * FROM orders INNER JOIN users USING(user_id) WHERE user_id = ? AND role = 'CUSTOMER'";
 
-//    public static final String FETCH_SELLER_ORDERS = "SELECT * FROM orders " +
-//            "INNER JOIN (SELECT order_id " +
-//            "FROM order_product_m2m INNER JOIN " +
-//            "(SELECT * FROM products INNER JOIN " +
-//            "users ON(products.seller_id = users.user_id) WHERE seller_id = ?) USING(product_id)) AS order_ids USING(order_id)";
+    public static final String FETCH_SELLER_ORDERS = "WITH products_cte AS (SELECT u.name as uname, p.* FROM products p INNER JOIN users u ON (p.seller_id = u.user_id) WHERE p.seller_id = ? AND u.role = 'SELLER') " +
+            "SELECT * FROM orders INNER JOIN (SELECT * FROM order_product_m2m INNER JOIN products_cte USING (product_id)) t1 USING (order_id)";
 }

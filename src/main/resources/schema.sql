@@ -1,11 +1,12 @@
---USE e-commerce-database;
+CREATE DATABASE IF NOT EXISTS ecommercedb;
+USE ecommercedb;
 
 CREATE TABLE IF NOT EXISTS users(
  user_id INT AUTO_INCREMENT,
  name VARCHAR (20) NOT NULL,
- username VARCHAR (20) NOT NULL,
+ username VARCHAR (20) NOT NULL UNIQUE,
  password VARCHAR (80) NOT NULL,
- email VARCHAR (20) NOT NULL,
+ email VARCHAR (20) NOT NULL UNIQUE,
  role ENUM('CUSTOMER', 'SELLER') NOT NULL,
  is_logged_in SMALLINT NOT NULL,
  PRIMARY KEY (user_id)
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS order_product_m2m(
  FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
  product_id INT NOT NULL,
  FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE,
- PRIMARY KEY (order_id, product_id),
- quantity INT NOT NULL
+ quantity INT NOT NULL,
+ PRIMARY KEY (order_id, product_id)
 );
 

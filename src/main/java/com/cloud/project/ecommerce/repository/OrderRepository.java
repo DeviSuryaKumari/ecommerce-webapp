@@ -12,5 +12,5 @@ public interface OrderRepository {
     List<Order> fetchCustomerOrders(int customerId);
 
     //    API needed by Seller
-//    List<Order> fetchSellerOrders(int sellerId);
+    List<Order> fetchSellerOrders(int sellerId);
 }

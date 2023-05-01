@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User fetchUser(int userId) {
         String sqlQuery = UserQuery.FETCH_USER;
 
-        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser);
+        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, userId);
     }
 
     @Override
