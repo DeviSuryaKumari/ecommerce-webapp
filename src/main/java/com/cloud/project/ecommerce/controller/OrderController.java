@@ -18,6 +18,7 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @CrossOrigin
     @PostMapping("/new")
     public ResponseEntity<?> placeOrder(@RequestBody OrderPostData orderPostData) {
         try {
@@ -33,6 +34,7 @@ public class OrderController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<Order>> fetchCustomerOrders(@PathVariable int customerId) {
         try {
@@ -43,6 +45,7 @@ public class OrderController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/seller/{sellerId}")
     public ResponseEntity<List<Order>> fetchSellerOrders(@PathVariable int sellerId) {
         try {

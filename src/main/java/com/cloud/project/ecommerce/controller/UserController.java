@@ -14,6 +14,7 @@ public class UserController {
     private UserRepository userRepository;
 
     // create user rest API
+    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User user)  {
         int rowsAffected = userRepository.register(user);
@@ -22,6 +23,7 @@ public class UserController {
     }
 
     // login user rest API
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
 
@@ -35,6 +37,7 @@ public class UserController {
                 : ResponseEntity.internalServerError().build();
     }
 
+    @CrossOrigin
     @PutMapping("/logout/{id}")
     public ResponseEntity<?> logoutUser(@PathVariable Integer id) {
 

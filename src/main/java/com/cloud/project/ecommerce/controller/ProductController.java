@@ -14,6 +14,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @CrossOrigin
     @GetMapping("/")
     public ResponseEntity<List<Product>> fetchAllProducts() {
         try {
@@ -24,6 +25,7 @@ public class ProductController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/{productId}")
     public ResponseEntity<Product> fetchProductDetails(@PathVariable int productId) {
         try {
@@ -34,6 +36,7 @@ public class ProductController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<Product>> fetchProductsByCategory(@PathVariable int categoryId) {
         try {
@@ -44,6 +47,7 @@ public class ProductController {
         }
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<Product> addProduct(@RequestBody Product product)  {
         int rowsAffected = productRepository.addProduct(product);
@@ -51,6 +55,7 @@ public class ProductController {
                 : ResponseEntity.internalServerError().build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/{productId}")
     public ResponseEntity<?> deleteProduct(@PathVariable int productId) {
         int rowsAffected = productRepository.deleteProduct(productId);
@@ -58,6 +63,7 @@ public class ProductController {
                 : ResponseEntity.internalServerError().build();
     }
 
+    @CrossOrigin
     @GetMapping("/seller/{sellerId}")
     public ResponseEntity<List<Product>> fetchSellerProducts(@PathVariable int sellerId) {
         try {
