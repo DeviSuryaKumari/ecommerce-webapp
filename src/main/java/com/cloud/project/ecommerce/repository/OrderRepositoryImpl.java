@@ -1,3 +1,4 @@
+/* SJSU CS 218 Spring 2023 TEAM6 */
 package com.cloud.project.ecommerce.repository;
 
 import com.cloud.project.ecommerce.CONSTANTS;
@@ -5,8 +6,6 @@ import com.cloud.project.ecommerce.model.Order;
 import com.cloud.project.ecommerce.query.OrderQuery;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -30,8 +29,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
         int affectedRowCount = jdbcTemplate.update(OrderQuery.CREATE_ORDER, order.getUserId(), order.getOrderDate(),
                 order.getOrderStatus().name(), order.getTotalPrice());
-
-
+        
         if (affectedRowCount > 0) {
            int insertedOrderId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 

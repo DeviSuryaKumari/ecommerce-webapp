@@ -1,3 +1,4 @@
+/* SJSU CS 218 Spring 2023 TEAM6 */
 package com.cloud.project.ecommerce.query;
 
 public class OrderQuery {

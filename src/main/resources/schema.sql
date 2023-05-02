@@ -1,3 +1,4 @@
+-- SJSU CS 218 Spring 2023 TEAM6
 CREATE DATABASE IF NOT EXISTS ecommercedb;
 USE ecommercedb;
 

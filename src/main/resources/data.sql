@@ -1,3 +1,4 @@
+-- SJSU CS 218 Spring 2023 TEAM6
 use ecommercedb;
 
 set FOREIGN_KEY_CHECKS = 0;
