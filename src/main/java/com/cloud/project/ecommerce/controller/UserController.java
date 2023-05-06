@@ -18,9 +18,12 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User user)  {
-        int rowsAffected = userRepository.register(user);
-        return (rowsAffected > 0) ? ResponseEntity.ok("User successfully registered!")
-                : ResponseEntity.internalServerError().build();
+        try {
+            int createdUserId = userRepository.register(user);
+            return  ResponseEntity.ok(createdUserId);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     // login user rest API
