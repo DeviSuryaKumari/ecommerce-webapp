@@ -30,16 +30,13 @@ public class UserRepositoryImpl implements UserRepository {
 
         String sqlQuery = UserQuery.REGISTER;
 
-        jdbcTemplate.update(sqlQuery,
+        return jdbcTemplate.update(sqlQuery,
                 user.getName(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
                 user.getRole().name(),
                 user.getIsLoggedIn());
-
-        int insertedUserId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        return insertedUserId;
     }
 
     @Override
