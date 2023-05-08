@@ -5,6 +5,7 @@ import com.cloud.project.ecommerce.model.User;
 
 public interface UserRepository {
     User fetchUser(int userId);
+    User fetchUserByUsername(String username);
     int register(User user);
     int login(Integer userId);
     int logout(Integer userId);

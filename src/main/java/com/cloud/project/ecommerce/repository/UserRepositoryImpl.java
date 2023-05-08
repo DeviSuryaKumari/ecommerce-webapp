@@ -26,6 +26,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User fetchUserByUsername(String username) {
+        String sqlQuery = UserQuery.FETCH_USER_BY_USERNAME;
+
+        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, username);
+    }
+
+    @Override
     public int register(User user) {
 
         String sqlQuery = UserQuery.REGISTER;

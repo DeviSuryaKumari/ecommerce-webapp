@@ -3,6 +3,8 @@ package com.cloud.project.ecommerce.query;
 
 public class UserQuery {
     public static final String FETCH_USER = "SELECT * FROM users WHERE user_id = ?";
+
+    public static final String FETCH_USER_BY_USERNAME = "SELECT * FROM users WHERE username = ?";
     public static final String REGISTER =
             "INSERT INTO users(name, username, password, email, role, is_logged_in) " +
                     "VALUES (?, ?, ?, ?, ?, ?)";

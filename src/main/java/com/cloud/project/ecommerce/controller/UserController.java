@@ -28,13 +28,14 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
 
-        User user = userRepository.fetchUser(loginRequest.getUserId());
+        User user = userRepository.fetchUserByUsername(loginRequest.getUsername());
 
-        if (!user.getPassword().equals(loginRequest.getPassword()) || !user.getUsername().equals(loginRequest.getUsername())) {
+        if (!user.getRole().equals(loginRequest.getRole()) || !user.getPassword().equals(loginRequest.getPassword()) || !user.getUsername().equals(loginRequest.getUsername())) {
             return ResponseEntity.internalServerError().body("Login failed due to incorrect credentials");
         }
-        int rowsAffected = userRepository.login(loginRequest.getUserId());
-        return (rowsAffected > 0) ? ResponseEntity.ok("Login successful!")
+        int rowsAffected = userRepository.login(user.getUserId());
+        user.setIsLoggedIn(true);
+        return (rowsAffected > 0) ? ResponseEntity.ok(user)
                 : ResponseEntity.internalServerError().build();
     }
 
