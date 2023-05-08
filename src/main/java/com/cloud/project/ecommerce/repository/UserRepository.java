@@ -4,8 +4,8 @@ package com.cloud.project.ecommerce.repository;
 import com.cloud.project.ecommerce.model.User;
 
 public interface UserRepository {
-    User fetchUser(int userId);
+    User fetchUser(String username);
     int register(User user);
-    int login(Integer userId);
-    int logout(Integer userId);
+    int login(String username, String password);
+    int logout(String username);
 }

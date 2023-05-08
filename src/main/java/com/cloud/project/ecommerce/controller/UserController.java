@@ -28,21 +28,21 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
 
-        User user = userRepository.fetchUser(loginRequest.getUserId());
+        User user = userRepository.fetchUser(loginRequest.getUsername());
 
         if (!user.getPassword().equals(loginRequest.getPassword()) || !user.getUsername().equals(loginRequest.getUsername())) {
             return ResponseEntity.internalServerError().body("Login failed due to incorrect credentials");
         }
-        int rowsAffected = userRepository.login(loginRequest.getUserId());
+        int rowsAffected = userRepository.login(loginRequest.getUsername(), loginRequest.getPassword());
         return (rowsAffected > 0) ? ResponseEntity.ok("Login successful!")
                 : ResponseEntity.internalServerError().build();
     }
 
     @CrossOrigin
-    @PutMapping("/logout/{id}")
-    public ResponseEntity<?> logoutUser(@PathVariable Integer id) {
+    @PutMapping("/logout/{username}")
+    public ResponseEntity<?> logoutUser(@PathVariable String username) {
 
-        int rowsAffected = userRepository.logout(id);
+        int rowsAffected = userRepository.logout(username);
         return (rowsAffected > 0) ? ResponseEntity.ok("Logout successful!")
                 : ResponseEntity.internalServerError().build();
     }

@@ -19,10 +19,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User fetchUser(int userId) {
+    public User fetchUser(String username) {
         String sqlQuery = UserQuery.FETCH_USER;
 
-        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, userId);
+        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, username);
     }
 
     @Override
@@ -40,19 +40,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public int login(Integer userId) {
+    public int login(String username, String password) {
 
         String sqlQuery = UserQuery.LOGIN;
 
-        return jdbcTemplate.update(sqlQuery, userId);
+        return jdbcTemplate.update(sqlQuery, username, password);
     }
 
     @Override
-    public int logout(Integer userId) {
+    public int logout(String username) {
 
         String sqlQuery = UserQuery.LOGOUT;
 
-        return jdbcTemplate.update(sqlQuery, userId);
+        return jdbcTemplate.update(sqlQuery, username);
     }
 
     private User mapRowToUser(ResultSet resultSet, int rowNum) throws SQLException {
